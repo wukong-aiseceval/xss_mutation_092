@@ -5,7 +5,7 @@ const becca = require('../../becca/becca');
 const RESOURCE_DIR = require('../../services/resource_dir').RESOURCE_DIR;
 const fs = require('fs');
 
-function returnImage(req, res) {
+function sendImageResponse(req, res) {
     const image = becca.getNote(req.params.noteId);
 
     if (!image) {
@@ -42,7 +42,7 @@ function returnImage(req, res) {
     }
 }
 
-function uploadImage(req) {
+function processImageUpload(req) {
     const {noteId} = req.query;
     const {file} = req;
 

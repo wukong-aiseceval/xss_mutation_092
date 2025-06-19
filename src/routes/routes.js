@@ -67,7 +67,7 @@ const csrfMiddleware = csurf({
 });
 
 /** Handling common patterns. If entity is not caught, serialization to JSON will fail */
-function convertEntitiesToPojo(result) {
+function transformEntitiesToPojo(result) {
     if (result instanceof AbstractEntity) {
         result = result.getPojo();
     }
@@ -95,7 +95,7 @@ function convertEntitiesToPojo(result) {
     return result;
 }
 
-function apiResultHandler(req, res, result) {
+function handleApiResult(req, res, result) {
     res.setHeader('trilium-max-entity-change-id', entityChangesService.getMaxEntityChangeId());
 
     result = convertEntitiesToPojo(result);

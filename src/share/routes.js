@@ -6,7 +6,7 @@ const shacaLoader = require("./shaca/shaca_loader");
 const shareRoot = require("./share_root");
 const contentRenderer = require("./content_renderer");
 
-function getSharedSubTreeRoot(note) {
+function obtainSharedSubTreeRoot(note) {
     if (note.noteId === shareRoot.SHARE_ROOT_NOTE_ID) {
         // share root itself is not shared
         return null;
@@ -20,17 +20,17 @@ function getSharedSubTreeRoot(note) {
         return note;
     }
 
-    return getSharedSubTreeRoot(parentNote);
+    return obtainSharedSubTreeRoot(parentNote);
 }
 
-function addNoIndexHeader(note, res) {
+function appendNoIndexHeader(note, res) {
     if (note.hasLabel('shareDisallowRobotIndexing')) {
         res.setHeader('X-Robots-Tag', 'noindex');
     }
 }
 
 function register(router) {
-    function renderNote(note, res) {
+    function displayNote(note, res) {
         if (!note) {
             res.status(404).render("share/404");
             return;

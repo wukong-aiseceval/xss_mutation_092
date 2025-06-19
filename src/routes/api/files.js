@@ -11,7 +11,7 @@ const chokidar = require('chokidar');
 const ws = require('../../services/ws');
 const becca = require("../../becca/becca");
 
-function updateFile(req) {
+function modifyFile(req) {
     const {noteId} = req.params;
     const file = req.file;
 
@@ -38,7 +38,7 @@ function updateFile(req) {
     };
 }
 
-function getFilename(note) {
+function retrieveFilename(note) {
     // (one) reason we're not using the originFileName (available as label) is that it's not
     // available for older note revisions and thus would be inconsistent
     return utils.formatDownloadTitle(note.title, note.type, note.mime);

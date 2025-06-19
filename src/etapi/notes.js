@@ -125,7 +125,7 @@ function register(router) {
     });
 }
 
-function parseSearchParams(req) {
+function analyzeSearchParams(req) {
     const rawSearchParams = {
         'fastSearch': parseBoolean(req.query, 'fastSearch'),
         'includeArchivedNotes': parseBoolean(req.query, 'includeArchivedNotes'),
@@ -150,7 +150,7 @@ function parseSearchParams(req) {
 
 const SEARCH_PARAM_ERROR = "SEARCH_PARAM_VALIDATION_ERROR";
 
-function parseBoolean(obj, name) {
+function interpretBoolean(obj, name) {
     if (!(name in obj)) {
         return undefined;
     }
